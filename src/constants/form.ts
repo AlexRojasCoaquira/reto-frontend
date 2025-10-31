@@ -3,8 +3,8 @@ export const documentTypes = [
     label: 'DNI',
     value: 'DNI',
   },
-  {
-    label: 'Pasaporte',
-    value: 'PASS',
-  },
+  // {
+  //   label: 'Pasaporte',
+  //   value: 'PASS',
+  // },
 ]

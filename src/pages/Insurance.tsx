@@ -82,8 +82,8 @@ export function InsurancePage() {
         if (!value) error = 'El número de documento es obligatorio'
         else if (form.documentType === 'DNI' && !/^\d{8}$/.test(value as string))
           error = 'El DNI debe tener 8 dígitos'
-        else if (form.documentType === 'PASS' && !/^[A-Z0-9]{6,12}$/i.test(value as string))
-          error = 'Número de pasaporte inválido'
+        // else if (form.documentType === 'PASS' && !/^[A-Z0-9]{6,12}$/i.test(value as string))
+        //   error = 'Número de pasaporte inválido'
         break
       case 'phoneNumber':
         if (!value) error = 'El teléfono es obligatorio'
