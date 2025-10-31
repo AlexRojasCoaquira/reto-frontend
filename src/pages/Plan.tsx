@@ -3,9 +3,24 @@ import '../styles/pages/Plans.scss'
 import { BackIcon, FamilyIcon } from '../components/icons/index'
 import { CardPlan } from '../components/CardPlan'
 import { CardOption } from '../components/CardOption'
+import { CardSlider } from '../components/Slider.tsx'
+import { optionList } from '../constants/plan'
+import { usePlan } from '../hooks/usePlan'
+import { useUserStore } from '../store/user.ts'
+import { usePlanStore } from '../store/plan.ts'
+import type { Plan } from '../types/plan.ts'
 
 export function PlanPage() {
-  const [step] = useState(2)
+  const [step, setStep] = useState(1)
+  const [selectedCard, setSelectedCard] = useState<string | null>(null)
+  const user = useUserStore((state) => state.user)
+  const { setPlan, plan } = usePlanStore()
+  const { planList } = usePlan(user.birthDay)
+  const selectedPlan = (plan: Plan) => {
+    setPlan(plan)
+    setStep(2)
+  }
+
   return (
     <>
       <div className="steps">
@@ -17,19 +32,38 @@ export function PlanPage() {
         <div className="plans">
           <div className="plans__back">Volver</div>
           <div className="plans__content">
-            <h1 className="plans__title">Rocío ¿Para quién deseas cotizar?</h1>
+            <h1 className="plans__title">{user.name} ¿Para quién deseas cotizar?</h1>
             <p className="plans__description">
               Selecciona la opción que se ajuste más a tus necesidades.
             </p>
             <div className="plans__options">
-              <CardOption selected />
-              <CardOption selected />
+              {optionList.map((op) => (
+                <CardOption
+                  key={op.key}
+                  title={op.title}
+                  description={op.description}
+                  selected={selectedCard === op.key}
+                  onClick={() => setSelectedCard(op.key)}
+                  icon={op.icon()}
+                />
+              ))}
             </div>
-            <div className="plans__cards">
-              <CardPlan />
-              <CardPlan />
-              <CardPlan />
-            </div>
+            {selectedCard && planList && (
+              <div className="plans__cards">
+                <CardSlider>
+                  {planList.map((plan, idx) => (
+                    <CardPlan
+                      key={`${plan.name}-${idx}`}
+                      onClick={() => selectedPlan(plan)}
+                      title={plan.name}
+                      description={plan.description}
+                      price={plan.price}
+                      withDiscount={selectedCard === 'others'}
+                    />
+                  ))}
+                </CardSlider>
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -43,20 +77,24 @@ export function PlanPage() {
                 <span>Precios calculados para:</span>
                 <div className="card-resume__header-title">
                   <FamilyIcon />
-                  <h3>Rocio Miranda Díaz</h3>
+                  <h3>
+                    {user.name} {user.lastName}
+                  </h3>
                 </div>
               </div>
               <div className="divider"></div>
               <div className="card-resume__body">
                 <div className="card-resume__body-detail">
                   <h4>Responsable de pago</h4>
-                  <p>DNI: 444888888</p>
-                  <p>Celular: 5130216147</p>
+                  <p>
+                    {user.documentType}: {user.documentNumber}
+                  </p>
+                  <p>Celular: {user.phoneNumber}</p>
                 </div>
                 <div className="card-resume__body-detail">
                   <h4>Plan Elegido</h4>
-                  <p>Plan en Casa y Clínica</p>
-                  <p>Costo del Plan: $99 al mes</p>
+                  <p>{plan.name}</p>
+                  <p>Costo del Plan: ${plan.price} al mes</p>
                 </div>
               </div>
             </div>

@@ -1,14 +1,15 @@
 import { useCallback, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import HomeImage from '@/assets/images/home.png'
-import '@/styles/pages/Home.scss'
+import '@/styles/pages/Insurance.scss'
 import { documentTypes } from '../constants/form.ts'
 import type { FormInsurance } from '../types/user.ts'
-// import { formSchema, type FormInsurance } from '../validators/formValidator.ts'
 import { Input } from '../components/ui/Input'
 import { Checkbox } from '../components/ui/Checkbox'
 import { Select } from '../components/ui/Select'
 import { getUser } from '../services/users.ts'
 import { Button } from '../components/ui/Button'
+import { useUserStore } from '../store/user.ts'
 
 type FormErrors = {
   documentType?: string
@@ -19,13 +20,13 @@ type FormErrors = {
 }
 const defaultForm: FormInsurance = {
   documentType: 'DNI',
-  documentNumber: '12312312',
-  phoneNumber: '987654321',
+  documentNumber: '',
+  phoneNumber: '',
   acceptPrivacyPolicy: false,
   acceptTerms: false,
 }
 
-export function HomePage() {
+export function InsurancePage() {
   const [form, setForm] = useState<FormInsurance>({ ...defaultForm })
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,6 +41,8 @@ export function HomePage() {
   }, [])
 
   const [errors, setErrors] = useState<FormErrors>({})
+  const navigate = useNavigate()
+  const { setUser } = useUserStore()
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -94,7 +97,11 @@ export function HomePage() {
   const getUserData = async () => {
     try {
       const res = await getUser()
-      console.log('res', res)
+      if (res) {
+        const { documentNumber, documentType, phoneNumber } = form
+        setUser({ ...res, documentType, documentNumber, phoneNumber })
+        navigate('/planes')
+      }
     } catch (error) {
       console.log('res', error)
     }
@@ -110,7 +117,7 @@ export function HomePage() {
 
       <div className="insurance__content">
         <header className="insurance__header">
-          <div className="">
+          <div>
             <span className="insurance__badge">Seguro Salud Flexible</span>
             <h1>Creado para ti y tu familia</h1>
           </div>
@@ -171,10 +178,14 @@ export function HomePage() {
             name="acceptTerms"
             error={errors.acceptTerms}
           />
-          <a href="">Aplican términos y condiciones</a>
-          <Button type="submit" size="lg" color="secondary">
-            Cotiza Aquí
-          </Button>
+          <a href="#" target="_blank" rel="noopener noreferrer">
+            Aplican términos y condiciones
+          </a>
+          <div className="insurance__form-btn">
+            <Button type="submit" size="lg" color="secondary">
+              Cotiza Aquí
+            </Button>
+          </div>
         </form>
       </div>
     </section>

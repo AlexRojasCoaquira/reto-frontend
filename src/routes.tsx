@@ -1,6 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { HomePage } from './pages/Home'
+import { InsurancePage } from './pages/Insurance'
 import { PlanPage } from './pages/Plan'
+import { NotFoundPage } from './pages/NotFound'
+
 import { HomeLayout } from './layouts/HomeLayout'
 import { PlanLayout } from './layouts/PlanLayout'
 
@@ -11,7 +13,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: HomePage,
+        Component: InsurancePage,
       },
     ],
   },
@@ -24,5 +26,9 @@ export const router = createBrowserRouter([
         Component: PlanPage,
       },
     ],
+  },
+  {
+    path: '*',
+    Component: NotFoundPage,
   },
 ])

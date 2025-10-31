@@ -11,3 +11,9 @@ export interface FormInsurance {
   acceptPrivacyPolicy: boolean
   acceptTerms: boolean
 }
+
+export interface UserData extends User {
+  documentType: string
+  documentNumber: string
+  phoneNumber: string
+}

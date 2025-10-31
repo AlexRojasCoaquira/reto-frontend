@@ -49,9 +49,18 @@
 
     &__label {
       color: #0a051e;
-      font-size: 0.75rem;
+      font-size: 1rem;
       font-weight: 400;
       cursor: pointer;
+    }
+
+    @media (width >= 768px) {
+      label {
+        color: #0a051e;
+        font-size: 0.75rem;
+        font-weight: 400;
+        cursor: pointer;
+      }
     }
   }
 

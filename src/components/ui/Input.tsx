@@ -32,7 +32,6 @@ export const InputComponent = ({
         {label && (
           <label htmlFor={inputId} className="form-field__label">
             {label}
-            {maxLength}
           </label>
         )}
         <input

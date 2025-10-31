@@ -31,6 +31,13 @@
     color: #141938;
   }
 
+  &__cards {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+
   &__options {
     margin-top: 16px;
     display: flex;
@@ -81,6 +88,14 @@
       display: flex;
       justify-content: center;
       gap: 2rem;
+    }
+
+    &__title {
+      text-align: center;
+    }
+
+    &__description {
+      text-align: center;
     }
   }
 }

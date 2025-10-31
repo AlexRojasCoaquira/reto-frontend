@@ -59,6 +59,10 @@
     }
   }
 
+  &__btn {
+    margin-top: auto;
+  }
+
   @media (width >= 768px) {
     &__cards {
       display: flex;

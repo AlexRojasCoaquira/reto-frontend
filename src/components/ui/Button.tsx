@@ -4,6 +4,7 @@ interface ButtonProps {
   children: React.ReactNode
   size?: 'md' | 'lg'
   onClick?: () => void
+  className?: string
 }
 
 export const Button = ({
@@ -12,12 +13,13 @@ export const Button = ({
   children,
   onClick,
   size = 'md',
+  className,
 }: ButtonProps) => {
   return (
     <button
       type={type}
       onClick={onClick}
-      className={`button button--${size} button--${color}`}
+      className={`${className} button button--${size} button--${color}`}
       style={{
         backgroundColor: color,
         border: 'none',
