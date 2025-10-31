@@ -168,7 +168,17 @@
 
   @media (width >= 768px) {
     &__back {
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: #4f4fff;
+      font-size: 1.125rem;
+      font-weight: 700;
+
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
     }
   }
 

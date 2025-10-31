@@ -21,12 +21,12 @@ export function PlanPage() {
     setPlan(plan)
     setStep(2)
   }
-
+  const isMobile = window.innerWidth <= 768
   return (
     <>
       <div className="steps">
         <BackIcon />
-        <div className="steps__step">PASO 1 DE 2</div>
+        <div className="steps__step">PASO {step} DE 2</div>
         <div className="steps__line"></div>
       </div>
       {step === 1 && (
@@ -54,8 +54,21 @@ export function PlanPage() {
             </div>
             {selectedCard && planList && (
               <div className="plans__cards">
-                <CardSlider>
-                  {planList.map((plan, idx) => (
+                {isMobile ? (
+                  <CardSlider>
+                    {planList.map((plan, idx) => (
+                      <CardPlan
+                        key={`${plan.name}-${idx}`}
+                        onClick={() => selectedPlan(plan)}
+                        title={plan.name}
+                        description={plan.description}
+                        price={plan.price}
+                        withDiscount={selectedCard === 'others'}
+                      />
+                    ))}
+                  </CardSlider>
+                ) : (
+                  planList.map((plan, idx) => (
                     <CardPlan
                       key={`${plan.name}-${idx}`}
                       onClick={() => selectedPlan(plan)}
@@ -64,8 +77,8 @@ export function PlanPage() {
                       price={plan.price}
                       withDiscount={selectedCard === 'others'}
                     />
-                  ))}
-                </CardSlider>
+                  ))
+                )}
               </div>
             )}
           </div>
@@ -73,7 +86,10 @@ export function PlanPage() {
       )}
       {step === 2 && (
         <div className="resume">
-          <div className="resume__back">Volver</div>
+          <Link to="/" className="resume__back">
+            <BackIcon />
+            <span>Volver</span>
+          </Link>
           <div className="resume__content">
             <h1 className="resume__title">Resumen del seguro </h1>
             <div className="card-resume">

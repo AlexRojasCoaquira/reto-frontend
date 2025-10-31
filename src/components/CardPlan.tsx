@@ -26,8 +26,8 @@ export const CardPlan = ({ title, description, price, withDiscount, onClick }: C
       <div className="divider"></div>
       <div className="card-plan__body">
         <ul>
-          {description.map((desc) => (
-            <li>● {desc}</li>
+          {description.map((desc, idx) => (
+            <li key={idx}>● {desc}</li>
           ))}
         </ul>
         <Button
