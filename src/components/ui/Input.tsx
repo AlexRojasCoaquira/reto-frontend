@@ -1,60 +1,54 @@
-import { useId } from 'react'
+import React, { useId } from 'react'
 import '@/styles/ui/Input.scss'
 
-interface InputProps {
+type InputProps = {
+  name: string
   label?: string
-  placeholder?: string
-  checked?: boolean
-  type?: 'text' | 'number' | 'checkbox' | 'radio'
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   required?: boolean
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  error?: string
+  type?: 'text' | 'number'
+  placeholder?: string
+  value: string
+  maxLength?: number
 }
 
-export const Input = ({
+export const InputComponent = ({
   label,
   type = 'text',
   onChange,
-  checked,
+  name,
   placeholder,
   required,
+  value,
+  error,
+  maxLength,
 }: InputProps) => {
   const inputId = useId()
-  const isCheckboxOrRadio = type === 'checkbox' || type === 'radio'
+
   return (
-    <div className={`${isCheckboxOrRadio ? 'form-field-checkbox' : 'form-field'}`}>
-      {isCheckboxOrRadio ? (
-        <>
-          <input
-            type={type}
-            id={inputId}
-            className="form-field__input"
-            checked={checked}
-            required={required}
-            onChange={onChange}
-          />
-          {label && (
-            <label htmlFor={inputId} className="form-field__label">
-              {label}
-            </label>
-          )}
-        </>
-      ) : (
-        <>
-          {label && (
-            <label htmlFor={inputId} className="form-field__label">
-              {label}
-            </label>
-          )}
-          <input
-            type={type}
-            id={inputId}
-            required={required}
-            className="form-field__input"
-            onChange={onChange}
-            placeholder={placeholder}
-          />
-        </>
-      )}
+    <div className="field-content">
+      <div className="form-field">
+        {label && (
+          <label htmlFor={inputId} className="form-field__label">
+            {label}
+            {maxLength}
+          </label>
+        )}
+        <input
+          type={type}
+          name={name}
+          id={inputId}
+          required={required}
+          className="form-field__input"
+          onChange={onChange}
+          value={value}
+          placeholder={placeholder}
+          maxLength={maxLength}
+        />
+      </div>
+      {error && <p className="form-error">{error}</p>}
     </div>
   )
 }
+export const Input = React.memo(InputComponent)
