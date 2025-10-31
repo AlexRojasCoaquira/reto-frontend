@@ -9,3 +9,29 @@
 body {
   font-family: BRSonoma, sans-serif;
 }
+
+.button {
+  width: 100%;
+  color: #fff;
+
+  &--md {
+    padding: 14px 32px;
+    font-size: 0.875rem;
+    border-radius: 32px;
+  }
+
+  &--lg {
+    padding: 18px 40px;
+    font-size: 1.125rem;
+    border-radius: 40px;
+    font-weight: 700;
+  }
+
+  &--primary {
+    background-color: #ff1c44;
+  }
+
+  &--secondary {
+    background-color: #03050f;
+  }
+}

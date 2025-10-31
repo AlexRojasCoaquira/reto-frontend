@@ -8,6 +8,7 @@ import { Input } from '../components/ui/Input'
 import { Checkbox } from '../components/ui/Checkbox'
 import { Select } from '../components/ui/Select'
 import { getUser } from '../services/users.ts'
+import { Button } from '../components/ui/Button'
 
 type FormErrors = {
   documentType?: string
@@ -172,7 +173,9 @@ export function HomePage() {
             error={errors.acceptTerms}
           />
           <a href="">Aplican términos y condiciones</a>
-          <button type="submit">Cotiza aquí</button>
+          <Button type="submit" size="lg" color="secondary">
+            Cotiza Aquí
+          </Button>
         </form>
       </div>
     </section>

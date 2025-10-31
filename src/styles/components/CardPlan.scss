@@ -1,0 +1,74 @@
+.card-plan {
+  background: #fff;
+  padding: 68px 32px 48px;
+  min-height: 160px;
+  border-radius: 24px;
+  box-shadow: 0 1px 32px 0 #aeacf359;
+  min-width: 256px;
+  max-width: 288px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+  }
+
+  &__info {
+    &-title {
+      font-weight: 900;
+      font-size: 1.5rem;
+      line-height: 32px;
+    }
+
+    &-cost {
+      color: #7981b2;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+    }
+
+    &-disc {
+      color: #7981b2;
+      font-size: 0.875rem;
+      font-weight: 400;
+      letter-spacing: -0.2px;
+      text-decoration: line-through;
+    }
+
+    &-price {
+      color: #141938;
+      font-weight: 900;
+      font-size: 1.25rem;
+      letter-spacing: -0.2px;
+    }
+  }
+
+  &__body {
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 0;
+      list-style: none;
+      margin-bottom: 2rem;
+
+      li {
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 28px;
+      }
+    }
+  }
+
+  @media (width >= 768px) {
+    &__cards {
+      display: flex;
+      gap: 2rem;
+    }
+  }
+}
+
+.divider {
+  width: 100%;
+  margin: 24px 0;
+  border: 1px solid #d7dbf5;
+}

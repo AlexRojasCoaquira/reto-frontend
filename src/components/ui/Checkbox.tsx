@@ -5,10 +5,11 @@ type CheckInputProps = {
   name: string
   label?: string
   required?: boolean
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   error?: string
   type: 'checkbox' | 'radio'
-  checked: boolean
+  checked?: boolean
+  className?: string
 }
 
 export const CheckboxComponent = ({
@@ -18,6 +19,7 @@ export const CheckboxComponent = ({
   name,
   required,
   checked,
+  className,
   error,
 }: CheckInputProps) => {
   const inputId = useId()
@@ -29,10 +31,10 @@ export const CheckboxComponent = ({
           type={type}
           name={name}
           id={inputId}
-          className="form-field__input"
           checked={checked}
           required={required}
           onChange={onChange}
+          className={`${className || ''} form-field__input`}
         />
         {label && (
           <label htmlFor={inputId} className="form-field__label">
