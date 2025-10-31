@@ -27,7 +27,7 @@ export const InputComponent = ({
   const inputId = useId()
 
   return (
-    <div className="field-content">
+    <div className="field-content field-content--custom">
       <div className="form-field form-field--custom">
         {label && (
           <label htmlFor={inputId} className="form-field__label">

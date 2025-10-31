@@ -68,20 +68,42 @@
 
     .form-document {
       display: flex;
-      width: 100%;
       border-radius: 8px;
+      box-sizing: border-box;
+      width: 100%;
+
+      .field-content {
+        .form-field {
+          padding: 0;
+        }
+
+        &--special {
+          width: 30%;
+        }
+
+        &--custom {
+          width: 70%;
+        }
+      }
 
       .form-field {
         &--special {
           border: 1px solid #5e6488;
           border-right: none;
           border-radius: 8px 0 0 8px;
+          padding: 0 0 0 4px !important;
         }
 
         &--custom {
           border: 1px solid #5e6488;
           border-radius: 0 8px 8px 0;
+          padding: 8px 16px !important;
         }
+
+        // &__select {
+        //   box-sizing: border-box;
+        //   padding: 8px 16px;
+        // }
       }
     }
   }

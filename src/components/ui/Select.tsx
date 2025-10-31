@@ -23,7 +23,7 @@ export const SelectComponent = ({
   const selectId = useId()
 
   return (
-    <div className="field-content">
+    <div className="field-content field-content--special">
       <div className="form-field form-field--special">
         {label && (
           <label htmlFor={selectId} className="form-field__label">
