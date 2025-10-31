@@ -1,5 +1,5 @@
 import '../styles/pages/Plans.scss'
-import { BackIcon, ProtectionLight } from '../components/icons/index'
+import { BackIcon } from '../components/icons/index'
 import { CardPlan } from '../components/CardPlan'
 import { CardOption } from '../components/CardOption'
 
@@ -19,8 +19,8 @@ export function PlanPage() {
             Selecciona la opción que se ajuste más a tus necesidades.
           </p>
           <div className="plans__options">
-            <CardOption />
-            <CardOption />
+            <CardOption selected />
+            <CardOption selected />
           </div>
           <div className="plans__cards">
             <CardPlan />
