@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import '../styles/pages/Plans.scss'
 import { BackIcon, FamilyIcon } from '../components/icons/index'
 import { CardPlan } from '../components/CardPlan'
@@ -9,22 +9,36 @@ import { usePlan } from '../hooks/usePlan'
 import { useUserStore } from '../store/user.ts'
 import { usePlanStore } from '../store/plan.ts'
 import type { Plan } from '../types/plan.ts'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export function PlanPage() {
   const [step, setStep] = useState(1)
   const [selectedCard, setSelectedCard] = useState<string | null>(null)
   const user = useUserStore((state) => state.user)
-  const { setPlan, plan } = usePlanStore()
+  const { setPlan, plan, clearPlan } = usePlanStore()
+  const navigate = useNavigate()
   const { planList } = usePlan(user.birthDay)
   const selectedPlan = (plan: Plan) => {
     setPlan(plan)
     setStep(2)
   }
   const isMobile = window.innerWidth <= 768
+
+  const handleClick = (step: number) => {
+    if (step === 1) {
+      navigate('/')
+    } else {
+      setSelectedCard(null)
+      clearPlan()
+      setStep(1)
+    }
+  }
+  useEffect(() => {
+    clearPlan()
+  }, [])
   return (
     <>
-      <div className="steps">
+      <div className="steps" onClick={() => handleClick(step)}>
         <BackIcon />
         <div className="steps__step">PASO {step} DE 2</div>
         <div className="steps__line"></div>
@@ -86,10 +100,10 @@ export function PlanPage() {
       )}
       {step === 2 && (
         <div className="resume">
-          <Link to="/" className="resume__back">
+          <div className="resume__back" onClick={() => handleClick(0)}>
             <BackIcon />
             <span>Volver</span>
-          </Link>
+          </div>
           <div className="resume__content">
             <h1 className="resume__title">Resumen del seguro </h1>
             <div className="card-resume">

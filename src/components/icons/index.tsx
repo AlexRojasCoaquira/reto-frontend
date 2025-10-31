@@ -32,7 +32,7 @@ export const BackIcon = ({ width = 24, height = 24 }: { width?: number; height?:
 
 export const NextIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-    <g clip-path="url(#clip0_29608_374)">
+    <g clipPath="url(#clip0_29608_374)">
       <circle cx="16" cy="16" r="15" stroke="#4F4FFF" strokeWidth="2" />
       <path
         d="M14.7049 21.2049L13.2949 19.7949L17.0849 15.9999L13.2949 12.2049L14.7049 10.7949L19.9149 15.9999L14.7049 21.2049Z"
