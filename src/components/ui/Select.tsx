@@ -24,7 +24,7 @@ export const SelectComponent = ({
 
   return (
     <div className="field-content">
-      <div className="form-field">
+      <div className="form-field form-field--special">
         {label && (
           <label htmlFor={selectId} className="form-field__label">
             {label}

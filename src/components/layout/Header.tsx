@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { CallIcon, LogoIcon } from '../icons'
 
 export function Header() {
@@ -5,7 +6,9 @@ export function Header() {
     <header className="header">
       <div className="header__container">
         <div className="header__logo">
-          <LogoIcon />
+          <Link to="/">
+            <LogoIcon />
+          </Link>
         </div>
         <div className="header__contact">
           <span className="header__contact-message">¡Compra por este medio!</span>

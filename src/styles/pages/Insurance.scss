@@ -54,9 +54,35 @@
     flex-direction: column;
     gap: 0.75rem;
 
+    a {
+      margin-top: 0.5rem;
+      color: #03050f;
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-decoration: underline;
+    }
+
+    &-btn {
+      margin-top: 2rem;
+    }
+
     .form-document {
       display: flex;
       width: 100%;
+      border-radius: 8px;
+
+      .form-field {
+        &--special {
+          border: 1px solid #5e6488;
+          border-right: none;
+          border-radius: 8px 0 0 8px;
+        }
+
+        &--custom {
+          border: 1px solid #5e6488;
+          border-radius: 0 8px 8px 0;
+        }
+      }
     }
   }
 
@@ -107,14 +133,9 @@
     }
 
     &__form {
-      a {
-        color: #03050f;
-        font-weight: 600;
-        font-size: 0.75rem;
-        text-decoration: underline;
-      }
-
       &-btn {
+        margin-top: 2rem;
+
         button {
           width: 60%;
         }

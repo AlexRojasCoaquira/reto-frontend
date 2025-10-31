@@ -57,19 +57,38 @@
 
 .footer {
   background-color: #03050f;
-  height: 106px;
   display: flex;
+  min-height: 106px;
+  padding: 2rem 1rem;
   justify-content: center;
   align-items: center;
 
   &__container {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+    gap: 1rem;
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
     align-items: center;
     padding: 0 20px;
     color: #f8f9ff;
+
+    .footer-divider {
+      width: 100%;
+      margin: 16px 0;
+      border: 1px solid #2b304e;
+    }
+  }
+
+  @media (width >= 768px) {
+    &__container {
+      flex-direction: row;
+
+      .footer-divider {
+        display: none;
+      }
+    }
   }
 }

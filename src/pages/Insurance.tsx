@@ -33,6 +33,8 @@ export function InsurancePage() {
     const { name, type, checked, value } = e.target
     const fieldValue = type === 'checkbox' ? checked : value
     console.log('fieldValue', name)
+    const isNumber = /^\d+$/.test(value)
+    if ((name === 'documentNumber' || name === 'phoneNumber') && !isNumber) return
     setForm((prev) => ({
       ...prev,
       [name]: fieldValue,
@@ -46,6 +48,7 @@ export function InsurancePage() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
     if (!isFormValid()) return
     getUserData()
   }
