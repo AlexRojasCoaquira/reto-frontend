@@ -1,73 +1,157 @@
-# React + TypeScript + Vite
+# App de Selección de Seguros
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Banner de la App de Seguros](/public/rimac.svg)
 
-Currently, two official plugins are available:
+Una aplicación web moderna desarrollada para RIMAC Seguros que permite a los usuarios cotizar y gestionar planes de seguros de salud de manera eficiente y personalizada. La plataforma ofrece una experiencia de usuario fluida y profesional, implementando las mejores prácticas de desarrollo y diseño UI/UX.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌟 Demo
 
-## React Compiler
+[Ver Demo en Vercel](https://reto-frontend-pi.vercel.app/)
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+## 🎨 Diseño
 
-## Expanding the ESLint configuration
+El diseño de la aplicación está disponible en [Figma](https://www.figma.com/design/KGftIKxhcVm41kTKMsfTh2/Frontend-Challenge-2023?node-id=6994-137449&p=f&t=8QvxQi1AtxXKX9LI-0)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🎯 Características
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- 📚 Validación de formularios
+- 📱 Experiencia responsive optimizada para móviles y escritorio
+- 🎯 Cotización personalizada basada en edad y necesidades
+- 💰 Comparación intuitiva de planes y beneficios
+- 📋 Formularios con validación en tiempo real
+- 🔄 Gestión de estado eficiente con Zustand
+- 🎨 Diseño moderno y accesible siguiendo los lineamientos de RIMAC
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Objetivos del Proyecto
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Desarrollar una interfaz moderna y accesible
+- Implementar una arquitectura escalable y mantenible
+- Garantizar una experiencia de usuario fluida y sin fricciones
+- Optimizar el rendimiento y tiempo de carga
+- Mantener altos estándares de calidad de código
+
+## 🚀 Tecnologías Utilizadas
+
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![SASS](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+
+## 📸 Capturas de Pantalla
+
+### Vista de Escritorio
+
+![Vista de Escritorio](./src/assets/screenshots/desktop.png)
+
+### Vista Móvil
+
+![Vista Móvil](./src/assets/screenshots/mobile.png)
+
+## 📁 Estructura del Proyecto
+
+```
+src/
+├── assets/         # Imágenes y archivos estáticos
+├── components/     # Componentes UI reutilizables
+├── constants/      # Constantes de la aplicación
+├── pages/         # Componentes de páginas principales
+├── services/      # Servicios de API
+├── store/         # Gestión de estado
+├── styles/        # Estilos SCSS
+└── types/         # Definiciones de TypeScript
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## API Reference
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+En esta parte se muestra los servicios utilizados para el.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+#### Obtener usuario
+
+```http
+  GET /api/user.json
 ```
+
+| Parameter  | Type     | Description   |
+| :--------- | :------- | :------------ |
+| `name`     | `string` | **Required**. |
+| `lastName` | `string` | **Required**. |
+| `birthDay` | `string` | **Required**. |
+
+#### Obtener planes
+
+```http
+  GET /api/plans.json
+```
+
+| Parameter     | Type     | Description   |
+| :------------ | :------- | :------------ |
+| `name`        | `string` | **Required**. |
+| `price`       | `number` | **Required**. |
+| `description` | `string` | **Required**. |
+| `age`         | `number` | **Required**. |
+
+## 🛠️ Instalación y Configuración
+
+1. Clonar el repositorio
+
+```bash
+git clone https://github.com/AlexRojasCoaquira/reto-frontend.git
+```
+
+2. Instalar dependencias
+
+```bash
+pnpm install
+```
+
+3. Iniciar servidor de desarrollo
+
+```bash
+pnpm dev
+```
+
+## 📦 Construcción
+
+Generar una construcción para producción:
+
+```bash
+pnpm build
+```
+
+## 🧪 Testing
+
+Ejecutar los tests:
+
+```bash
+pnpm test
+```
+
+## 🔍 Linting y Formateo
+
+Ejecutar el linter:
+
+```bash
+pnpm lint
+```
+
+Formatear el código:
+
+```bash
+pnpm format
+```
+
+## Variables de entorno
+
+Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
+
+```bash
+VITE_API_RIMAC=<tu_url_api>
+```
+
+## 🚀 CI/CD
+
+El proyecto utiliza GitHub Actions para:
+
+- 🔍 Linting y verificación de tipos
+- 🧪 Ejecución de tests
+- 📦 Build y deploy automático a Vercel
