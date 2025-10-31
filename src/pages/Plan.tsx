@@ -1,15 +1,19 @@
 import { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+
 import '../styles/pages/Plans.scss'
+
+import { optionList } from '../constants/plan'
+import type { Plan } from '../types/plan.ts'
+
+import { usePlan } from '../hooks/usePlan'
+import { useUserStore } from '../store/user.ts'
+import { usePlanStore } from '../store/plan.ts'
+
 import { BackIcon, FamilyIcon } from '../components/icons/index'
 import { CardPlan } from '../components/CardPlan'
 import { CardOption } from '../components/CardOption'
 import { CardSlider } from '../components/Slider.tsx'
-import { optionList } from '../constants/plan'
-import { usePlan } from '../hooks/usePlan'
-import { useUserStore } from '../store/user.ts'
-import { usePlanStore } from '../store/plan.ts'
-import type { Plan } from '../types/plan.ts'
-import { Link, useNavigate } from 'react-router-dom'
 
 export function PlanPage() {
   const [step, setStep] = useState(1)

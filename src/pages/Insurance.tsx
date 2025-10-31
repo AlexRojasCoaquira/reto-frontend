@@ -1,15 +1,19 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 import HomeImage from '@/assets/images/home.png'
 import '@/styles/pages/Insurance.scss'
+
 import { documentTypes } from '../constants/form.ts'
 import type { FormInsurance } from '../types/user.ts'
+
+import { getUser } from '../services/users.ts'
+import { useUserStore } from '../store/user.ts'
+
 import { Input } from '../components/ui/Input'
 import { Checkbox } from '../components/ui/Checkbox'
 import { Select } from '../components/ui/Select'
-import { getUser } from '../services/users.ts'
 import { Button } from '../components/ui/Button'
-import { useUserStore } from '../store/user.ts'
 
 type FormErrors = {
   documentType?: string
