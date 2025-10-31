@@ -119,7 +119,6 @@ export function HomePage() {
           </figure>
         </header>
         <div className="insurance__divider"></div>
-        {JSON.stringify({ errors })}
         <p className="insurance__description">
           Tú eliges cuánto pagar. Ingresa tus datos, cotiza y recibe nuestra asesoría. 100% online.
         </p>

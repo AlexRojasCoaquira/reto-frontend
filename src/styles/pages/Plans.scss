@@ -118,3 +118,62 @@
     }
   }
 }
+
+.resume {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  &__back {
+    display: none;
+  }
+
+  &__title {
+    text-align: center;
+    margin: 1rem 0 3rem;
+  }
+
+  .card-resume {
+    padding: 24px 32px;
+    border-radius: 24px;
+    background: #fff;
+    box-shadow: 0 1px 24px 0 #aeacf340;
+
+    &__header {
+      span {
+        color: #141938;
+        font-weight: 900;
+        font-size: 0.625rem;
+        text-transform: uppercase;
+      }
+
+      &-title {
+        display: flex;
+        gap: 1rem;
+        margin-top: 16px;
+
+        h3 {
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: #141938;
+        }
+      }
+    }
+
+    &__body {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      &-detail {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+    }
+  }
+}
