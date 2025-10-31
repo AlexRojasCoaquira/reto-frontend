@@ -97,6 +97,20 @@
     &__description {
       text-align: center;
     }
+
+    &__back {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: #4f4fff;
+      font-size: 1.125rem;
+      font-weight: 700;
+
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
   }
 }
 
@@ -150,6 +164,12 @@
   &__title {
     text-align: center;
     margin: 1rem 0 3rem;
+  }
+
+  @media (width >= 768px) {
+    &__back {
+      display: block;
+    }
   }
 
   .card-resume {

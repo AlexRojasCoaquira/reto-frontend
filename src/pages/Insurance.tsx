@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import HomeImage from '@/assets/images/home.png'
 import '@/styles/pages/Insurance.scss'
@@ -32,7 +32,6 @@ export function InsurancePage() {
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, type, checked, value } = e.target
     const fieldValue = type === 'checkbox' ? checked : value
-    console.log('fieldValue', name)
     const isNumber = /^\d+$/.test(value)
     if ((name === 'documentNumber' || name === 'phoneNumber') && !isNumber) return
     setForm((prev) => ({
@@ -44,7 +43,7 @@ export function InsurancePage() {
 
   const [errors, setErrors] = useState<FormErrors>({})
   const navigate = useNavigate()
-  const { setUser } = useUserStore()
+  const { setUser, clearUser } = useUserStore()
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -54,7 +53,6 @@ export function InsurancePage() {
   }
 
   const handleSelect = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log(e.target.value)
     const { name, value } = e.target
 
     setForm((prev) => ({
@@ -112,6 +110,9 @@ export function InsurancePage() {
 
   const maxLengthDoc = form.documentType === 'DNI' ? 8 : 12
 
+  useEffect(() => {
+    clearUser()
+  }, [])
   return (
     <section className="insurance">
       <figure className="insurance__image insurance__image--desktop">

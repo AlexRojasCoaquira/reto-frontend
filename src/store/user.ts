@@ -5,6 +5,7 @@ import type { UserData } from '../types/user'
 interface UserContextType {
   user: UserData
   setUser: (user: UserData) => void
+  clearUser: () => void
 }
 
 export const useUserStore = create<UserContextType>()(

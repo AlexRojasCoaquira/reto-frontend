@@ -9,6 +9,7 @@ import { usePlan } from '../hooks/usePlan'
 import { useUserStore } from '../store/user.ts'
 import { usePlanStore } from '../store/plan.ts'
 import type { Plan } from '../types/plan.ts'
+import { Link } from 'react-router-dom'
 
 export function PlanPage() {
   const [step, setStep] = useState(1)
@@ -30,7 +31,10 @@ export function PlanPage() {
       </div>
       {step === 1 && (
         <div className="plans">
-          <div className="plans__back">Volver</div>
+          <Link to="/" className="plans__back">
+            <BackIcon />
+            <span>Volver</span>
+          </Link>
           <div className="plans__content">
             <h1 className="plans__title">{user.name} ¿Para quién deseas cotizar?</h1>
             <p className="plans__description">
